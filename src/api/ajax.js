@@ -1,14 +1,21 @@
 import axios from "axios";
+import { message } from "antd";
 
-export default ajax = (url,data = {},type = 'GET') => {
-    switch(type){
-        case 'GET':{
-            return axios.get(url,{
-                params:data
-            })
-        };
-        case 'POST':{
-            return axios.post(url,data);
+const ajax = (url,data = {},type = 'GET') => {
+    return new Promise((resolve,reject) =>{
+        let promise;
+        if(type === 'GET'){
+            promise = axios.get(url,{ params:data })
+        }else{
+            promise = axios.post(url,data);
         }
-    }
+        promise.then(response =>{
+            resolve(response.data)
+        }).catch(error => {
+            message.error('Submit ERROR!' + error.message)
+        })
+    })
+   
 }
+
+export default ajax;

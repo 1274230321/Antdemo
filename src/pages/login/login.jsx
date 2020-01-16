@@ -2,7 +2,9 @@ import React from "react";
 import "./login.less";
 import sapLogo from '../../assets/images/sap-logo-svg.svg';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
-
+import { reqLogin } from "../../api/index";
+import { message } from "antd";
+import memoryUtils from "../../utils/memoryUtils";
 const Login = (props) =>{
     const form = props.form;
     const { getFieldDecorator } = form;
@@ -10,11 +12,17 @@ const Login = (props) =>{
         //移除表单默认行为
         event.preventDefault();
         //对整个表单进行验证 err是boolean，有错误为true，values是一个object，包含username和password
-        form.validateFields((err,values)=>{
-            if(!err){
-                console.log('success',values);
+        form.validateFields(async (err,values)=>{
+            const { username, password } = values;
+            const result = await reqLogin(username, password);
+            if(result.status === 0){
+                memoryUtils.user = result.data;
+                console.log('login success',values);
+                //raplace掉history 之后不能回退到登陆界面
+                props.history.replace('/');
             }else{
-                console.log('error');
+                message.error('error 1');
+                console.log('login error');
             }
         })
 
@@ -27,8 +35,9 @@ const Login = (props) =>{
             </header>
             <section className='login-content'>
                 <h2>User Login</h2>
-                <Form  onSubmit={handleClick} className="login-form">
+    <Form  onSubmit={handleClick} className="login-form">
         <Form.Item>
+            {/* 第一个参数会在valid中通过values取出 */}
         {getFieldDecorator('username',{
             rules:[
                 {required:true, whitespace:true,message:"Please input your username!"},
