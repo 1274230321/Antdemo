@@ -8,7 +8,7 @@ const UpdateForm = (props) =>{
     const setForm = props.setForm
     useEffect(() => {
         setForm(props.form)
-    }, [])
+    }, [props.form, setForm])
 
     
     return (

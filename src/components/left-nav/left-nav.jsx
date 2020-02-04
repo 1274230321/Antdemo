@@ -1,4 +1,4 @@
-import React,{ useEffect } from "react";
+import React from "react";
 import "./left-nav.less";
 import { Link, withRouter} from "react-router-dom";
 import sapLogo from '../../assets/images/sap-logo-svg.svg';

@@ -5,6 +5,7 @@ import { Form, Icon, Input, Button, Checkbox } from 'antd';
 import { reqLogin } from "../../api/index";
 import { message } from "antd";
 import memoryUtils from "../../utils/memoryUtils";
+import LinkButton from "../../components/link-button";
 const Login = (props) =>{
     const form = props.form;
     const { getFieldDecorator } = form;
@@ -25,8 +26,8 @@ const Login = (props) =>{
                 console.log('login error');
             }
         })
-
     }
+    
     return (
         <div className='login'>
             <header className='login-header'>
@@ -63,13 +64,13 @@ const Login = (props) =>{
         </Form.Item>
         <Form.Item>
           <Checkbox>Remember me</Checkbox>
-          <a className="login-form-forgot" href="">
+          <LinkButton className="login-form-forgot" href="">
             Forgot password
-          </a>
+          </LinkButton>
           <Button type="primary" htmlType="submit" className="login-form-button">
             Log in
           </Button>
-          Or <a href="">register now!</a>
+          Or <LinkButton href="">register now!</LinkButton>
         </Form.Item>
       </Form>
             </section>

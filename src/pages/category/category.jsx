@@ -3,13 +3,14 @@ import { Card, Button, Icon, Table, Divider, message, Modal } from 'antd';
 import { reqAddCategory, reqUpdateCategory, reqCategory } from "../../api/index";
 import AddForm from "./add-form";
 import UpdateForm from "./update-form";
+import LinkButton from "../../components/link-button";
 const Category = () => {
     const title = 'First-Level Classification List'
     const [category, setCategory] = useState([])
     const [Loading, setLoading] = useState(false)
     const [SubCategory, setSubCategory] = useState()
     const [parentId, setParentId] = useState('0')
-    const [parentName, setParentName] = useState('a')
+    const [parentName, setParentName] = useState('LinkButton')
     const [showStatus, setShowStatus] = useState(0)
     const cates = useRef('')     //当前行的值
     const form = useRef()
@@ -106,10 +107,10 @@ const Category = () => {
             //生成复杂数据的渲染函数，参数分别为当前行的值，当前行数据，行索引	render(text, record, index)
             render: (sth) => (
                 <span>
-                    <a onClick={() => showUpdate(sth)}>modify</a>
+                    <LinkButton onClick={() => showUpdate(sth)}>modify</LinkButton>
                     {/* 向事件回调函数传递参数，需要在外部先包一个函数 */}
                     <Divider type="vertical" />
-                    {parentId === '0' ? <a onClick={() => showSubCategory(sth)}>sub-categories</a> : null}
+                    {parentId === '0' ? <LinkButton onClick={() => showSubCategory(sth)}>sub-categories</LinkButton> : null}
                 </span>
             ),
           }
@@ -137,7 +138,7 @@ const Category = () => {
         <div>
             <Card title={parentId === '0' ? <span>{title}</span> : (
               <span>
-                <a onClick={showCategory}>1 level</a>
+                <LinkButton onClick={showCategory}>1 level</LinkButton>
                 <Icon type='arrow-right'></Icon>
                 <span>{parentName}</span>
               </span>

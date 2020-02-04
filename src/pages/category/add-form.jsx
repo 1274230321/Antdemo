@@ -8,7 +8,7 @@ const AddForm = (props) =>{
     const { category, parentId, setForm } = props
     useEffect(() => {
         setForm(props.form)
-    }, [])
+    })
     return (
         <div>
             <Form>
