@@ -1,5 +1,5 @@
 const menuList = [{
-    title: 'Home',  key: '/home', icon: 'home',
+    title: 'Home',  key: '/home', icon: 'home', isPublic: true
 }, {
     title: 'Products',
     key: '/products',

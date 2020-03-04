@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useImperativeHandle, forwardRef } from 'react'
-import { UPLOAD_IMG_NAME } from "./cosntants";
+import { UPLOAD_IMG_NAME } from "../../utils/cosntants";
 import { Modal, Upload, Icon, message } from "antd";
 import { reqDeleteImage, reqUploadImage } from "../../api/index";
 

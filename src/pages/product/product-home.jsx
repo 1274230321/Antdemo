@@ -1,7 +1,7 @@
 import React,{ useEffect, useState, useRef } from "react";
 import { Card, Table, Icon, Button, Select, Input, Form, message } from "antd";
 import { reqProduct, reqUpdateProductStatus, reqSearchProducts } from "../../api/index";
-import { PAGE_SIZE } from "./cosntants";
+import { PAGE_SIZE } from "../../utils/cosntants";
 import LinkButton from "../../components/link-button/index";
 
 
